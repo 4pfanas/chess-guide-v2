@@ -43,8 +43,8 @@ The goal is still one page a complete beginner can open, understand in five minu
 | | v1 | v2 |
 |---|---|---|
 | **Typography** | Serif, book-like | Bebas Neue headings, DM Sans body, DM Mono coordinates |
-| **Movement logic** | Piece handling in the click code | A `PIECES` data object where each piece defines its own `moves()` function |
-| **Content layout** | All sections always visible | Collapsible accordion sections |
+| **Movement logic** | `PIECES` data with `moves()` hard-wired to one demo square each | `moves([rank, file])` takes the square as a parameter, so a piece can be shown from anywhere |
+| **Content layout** | Sections laid out in a fixed sequence | Collapsible accordion sections (open by default) |
 | **Extra content** | n/a | New **Piece Values** table (Pawn 1 to Queen 9) |
 | **Board detail** | Coordinate labels | Coordinates inside each square, plus a distinct "origin" square for the selected piece |
 | **Text transitions** | Instant swap | Fade and slide when the explanation changes |
@@ -71,11 +71,11 @@ The goal is still one page a complete beginner can open, understand in five minu
 4. The origin square gets its own `origin` class.
 5. The description box fades out, swaps its text, and fades back in.
 
-**Accordions.** `toggle(head)` flips an `open` class on the header and a `collapsed` class on the panel below it. CSS handles the animation.
+**Accordions.** Sections start open. `toggle(head)` flips an `open` class on the header and a `collapsed` class on the panel below it. CSS handles the animation.
 
 ## Piece movement, explained in code
 
-Every piece is described by data plus one small function, so adding or fixing a piece never touches the UI code:
+Every piece is described by data plus one small function, so adding or fixing a piece never touches the UI code. In v2 that function takes the origin square as an argument:
 
 ```js
 knight: {
@@ -126,8 +126,8 @@ open index.html
 
 ## Design notes
 
-- **Data over branching.** A `PIECES` object plus one generic `showPiece()` beats a long `if/else` chain: adding a rule is adding data.
-- **Progressive disclosure.** Rules, tips and values are collapsed by default so the board stays the star.
+- **Data over branching.** A `PIECES` object plus one generic `showPiece()` beats a long `if/else` chain: adding a piece is adding data.
+- **Progressive disclosure.** Rules, tips and values sit in accordions you can fold away, so the board stays the star.
 - **Monospaced coordinates** make the board feel precise and help players connect the picture to real chess notation.
 
 ## Limitations
