@@ -14,6 +14,9 @@ Tap a piece · Learn its moves · Master the board.
 
 </div>
 
+**Live demo:** https://4pfanas.github.io/chess-guide-v2/
+
+
 ---
 
 ## Table of contents
